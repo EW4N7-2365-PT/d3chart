@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "8"
+
+before_script:
+  - npm outdated
+
+install:
+  - npm install
+  - npm install -g webpack
+
+script:
+  - npm run lint
+  - npm run docs

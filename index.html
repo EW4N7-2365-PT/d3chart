@@ -5,8 +5,81 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>d3</title>
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+
+        select {
+            padding: 10px 25px;
+            font-family: sans-serif;
+            font-size: 1em;
+            background: #4D4E53;
+            color: whitesmoke;
+        }
+
+        option {
+            padding: 10px 25px;
+        }
+
+        svg {
+            background: whitesmoke;
+        }
+
+        path.line {
+            stroke-width: 3px;
+            stroke: orange;
+        }
+
+        path:hover .line {
+            stroke-width: 5px;
+            stroke: blue;
+        }
+
+        .x-axis path {
+            stroke: grey;
+            stroke-width: 3px;
+        }
+
+        .y-axis path {
+            stroke: grey;
+            stroke-width: 3px;
+        }
+
+        .grid line {
+            background: whitesmoke;
+            stroke: lightgrey;
+            stroke-opacity: 0.7;
+            z-index: -99999;
+            shape-rendering: crispEdges;
+        }
+
+        .chart_tooltip {
+            position: absolute;
+            width: 40px;
+            height: 35px;
+            color: whitesmoke;
+            font-size: 12pt;
+            font-family: sans-serif;
+            padding: 10px;
+            background: darkcyan;
+            border-radius: 3px;
+            opacity: 0;
+        }
+    </style>
 </head>
 <body>
+<select name="" id="select">
+    <option value="1300x900">1300x900</option>
+    <option value="1600x900">1600x900</option>
+    <option value="900x900">900x900</option>
+</select>
+<button id="effects">
+    show all
+</button>
+<button id="effects2">
+    hide all
+</button>
 <div id="root">
 </div>
 <script src="dist.js"></script>
