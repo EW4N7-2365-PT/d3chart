@@ -109,7 +109,6 @@ export class ChartBase {
 	}
 
 	drawXAxis() {
-		console.log(this.height);
 		this.axisBottom = d3
 			.axisBottom(this.scaleX)
 			.tickFormat(this.timeFormat);

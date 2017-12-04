@@ -29,14 +29,14 @@ export class MouseTrackingEffect {
 
 				d3.select('.mouse-tracking-rect-x')
 					.transition()
-					.duration(50)
+					.duration(60)
 					.attr('opacity', 1)
 					.attr('x', x - 28)
 					.attr('y', chart.height);
 
 				d3.select('.mouse-tracking-label-x')
 					.transition()
-					.duration(50)
+					.duration(60)
 					.text(chart.timeFormat(data.x))
 					.attr('fill', 'white')
 					.attr('x', x - 25)
@@ -44,14 +44,14 @@ export class MouseTrackingEffect {
 
 				d3.select('.mouse-tracking-rect-y')
 					.transition()
-					.duration(50)
+					.duration(60)
 					.attr('opacity', 1)
 					.attr('x', chart.margin - 20)
 					.attr('y', y - 20);
 
 				d3.select('.mouse-tracking-label-y')
 					.transition()
-					.duration(50)
+					.duration(60)
 					.attr('x', chart.margin - 18)
 					.attr('y', y)
 					.text(data.y)

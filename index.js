@@ -5,6 +5,7 @@ import {DataPointEffect} from './chart/index';
 import {MouseTrackingEffect} from './chart/index';
 import {AreaEffect} from './chart/index';
 
+
 const data = [
 	{x: '10:6:24', y: 2},
 	{x: '10:7:25', y: 18},
@@ -66,9 +67,12 @@ const effect2 = document.getElementById('effect2');
 const effect3 = document.getElementById('effect3');
 const size1 = document.getElementById('size1');
 const size2 = document.getElementById('size2');
+const size3 = document.getElementById('size3');
+
 
 effect1.addEventListener('click', () => chart.effects.toggle('area'));
 effect2.addEventListener('click', () => chart.effects.toggle('mousetracking'));
 effect3.addEventListener('click', () => chart.effects.toggle('datapoints'));
 size1.addEventListener('click', () => chart.resize(1300, 900));
 size2.addEventListener('click', () => chart.resize(1600, 800));
+size3.addEventListener('click', () => chart.resize(700, 500));

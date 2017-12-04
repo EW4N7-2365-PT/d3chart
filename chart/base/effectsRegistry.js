@@ -63,4 +63,11 @@ export class EffectsRegistry {
 			this.hide(effectName);
 		}
 	}
+
+	applyOnResize() {
+		for(const effect of this.list(true)) {
+			this.show(effect.name);
+		}
+	}
+
 }
