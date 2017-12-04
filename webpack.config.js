@@ -7,7 +7,7 @@ module.exports = {
 		path: path.resolve(__dirname, './'),
 	},
 	plugins: [
-		new webpack.optimize.UglifyJsPlugin(),
+		// new webpack.optimize.UglifyJsPlugin(),
 	],
 	module: {
 		rules: [

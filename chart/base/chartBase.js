@@ -101,6 +101,10 @@ export class ChartBase {
 		this.container = mount.append('svg')
 			.attr('height', this.height + this.margin)
 			.attr('width', this.width + this.margin);
+
+		this.container.append('g').classed('layer-0', true);
+		this.container.append('g').classed('layer-1', true);
+		this.container.append('g').classed('layer-2', true);
 		return this;
 	}
 
@@ -108,7 +112,8 @@ export class ChartBase {
 		this.axisBottom = d3
 			.axisBottom(this.scaleX)
 			.tickFormat(this.timeFormat);
-		this.container.append('g')
+		d3.select('.layer-2')
+			.append('g')
 			.classed('axis x-axis', true)
 			.attr('transform', `translate(0,${this.height})`)
 			.call(this.axisBottom);
@@ -116,7 +121,8 @@ export class ChartBase {
 
 	drawYAxis() {
 		this.axisLeft = d3.axisLeft(this.scaleY);
-		this.container.append('g')
+		d3.select('.layer-2')
+			.append('g')
 			.classed('axis y-axis', true)
 			.attr('transform', `translate(${this.margin},0)`)
 			.call(this.axisLeft);

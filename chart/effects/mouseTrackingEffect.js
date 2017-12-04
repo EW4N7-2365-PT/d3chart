@@ -13,8 +13,9 @@ export class MouseTrackingEffect {
 			.attr('fill', 'none')
 			.attr('stroke', 'none')
 			.attr('pointer-events', 'all')
-			.on('mousemove', () => {
-				const indexX = scaleX.invert(d3.event.pageX);
+			.on('mousemove', function () {
+				const indexX = scaleX.invert(d3.mouse(this)[0]);
+
 				const object_bisector = d3.bisector((data) => data.x).left;
 				const bisect = object_bisector(chart._data, indexX);
 				const data_closer = chart._data[bisect - 1];

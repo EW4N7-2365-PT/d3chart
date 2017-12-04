@@ -16,7 +16,7 @@ export class AreaEffect {
 			.y0(chart.height)
 			.x((d) => chart.scaleX(d.x))
 			.y1((d) => chart.scaleY(d.y));
-		chart.container
+		d3.select('.layer-1')
 			.append('path')
 			.attr('fill', this.fillColor)
 			.attr('opacity', this.opacity)

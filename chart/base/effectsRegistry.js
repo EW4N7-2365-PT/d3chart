@@ -44,6 +44,14 @@ export class EffectsRegistry {
 		effect.visible = false;
 	}
 
+	toggle(name) {
+		if (this.list(true).includes(name)) {
+			this.hide(name);
+		} else {
+			this.show(name);
+		}
+	}
+
 	showAll() {
 		for (const effectName of this.list()) {
 			this.show(effectName);
