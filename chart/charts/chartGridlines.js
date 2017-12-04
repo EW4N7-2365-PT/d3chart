@@ -40,7 +40,7 @@ export class ChartGridlines extends SingleLineChart {
 		await super.resize(width, height);
 		this.drawXGridlines();
 		this.drawYGridlines();
-		this.effects.ss();
+		this.effects.showAll();
 	}
 
 	drawChart(...args) {

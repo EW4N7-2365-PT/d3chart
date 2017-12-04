@@ -59,7 +59,7 @@ export class MouseTrackingEffect {
 
 				d3.select('.x-track')
 					.transition()
-					.duration(50)
+					.duration(60)
 					.attr('x1', x)
 					.attr('y1', chart.margin)
 					.attr('x2', x)
@@ -67,7 +67,7 @@ export class MouseTrackingEffect {
 
 				d3.select('.y-track')
 					.transition()
-					.duration(50)
+					.duration(60)
 					.attr('x1', chart.margin)
 					.attr('y1', y)
 					.attr('x2', chart.width)

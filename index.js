@@ -46,7 +46,7 @@ const config_object = {
 	width: 1300,
 	margin: 25,
 	invertYAxis: false,
-	transitionDuration: 2500,
+	transitionDuration: 1300,
 	curve: d3.curveLinear,
 	scaleXClass: d3.scaleTime
 };
@@ -60,28 +60,15 @@ chart.effects.add('area', new AreaEffect({fillColor: 'orange', opacity: .2}));
 chart.effects.add('datapoints', new DataPointEffect({r: 8, fillColor: 'grey'}));
 chart.effects.add('mousetracking', new MouseTrackingEffect());
 
-const select = document.getElementById('select');
-select.addEventListener('change', (event) => {
-	const index = event.currentTarget.selectedIndex;
-	let [width, height] = event.currentTarget.options[index].value.split('x');
-	chart.resize(width, height);
-});
 
 const effect1 = document.getElementById('effect1');
 const effect2 = document.getElementById('effect2');
 const effect3 = document.getElementById('effect3');
+const size1 = document.getElementById('size1');
+const size2 = document.getElementById('size2');
 
-// console.log(chart.effects.list(true));
-
-effect1.addEventListener('click', () => {
-	chart.effects.toggle('area');
-});
-
-effect2.addEventListener('click', () => {
-	chart.effects.toggle('mousetracking');
-});
-
-
-effect3.addEventListener('click', () => {
-	chart.effects.toggle('datapoints');
-});
+effect1.addEventListener('click', () => chart.effects.toggle('area'));
+effect2.addEventListener('click', () => chart.effects.toggle('mousetracking'));
+effect3.addEventListener('click', () => chart.effects.toggle('datapoints'));
+size1.addEventListener('click', () => chart.resize(1300, 900));
+size2.addEventListener('click', () => chart.resize(1600, 800));

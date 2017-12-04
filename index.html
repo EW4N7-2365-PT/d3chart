@@ -13,18 +13,6 @@
             font-family: sans-serif;
         }
 
-        select {
-            padding: 10px 25px;
-            font-family: sans-serif;
-            font-size: 1em;
-            background: #4D4E53;
-            color: whitesmoke;
-        }
-
-        option {
-            padding: 10px 25px;
-        }
-
         svg {
             background: whitesmoke;
         }
@@ -32,11 +20,6 @@
         path.line {
             stroke-width: 3px;
             stroke: orange;
-        }
-
-        path:hover .line {
-            stroke-width: 5px;
-            stroke: blue;
         }
 
         .x-axis path {
@@ -74,12 +57,8 @@
 <body>
 
 
-<select name="" id="select">
-    <option value="1300x900">1300x900</option>
-    <option value="1600x900">1600x900</option>
-    <option value="900x900">900x900</option>
-</select>
 <div class="col s12 m2 center" style="margin: 50px 0 10px 0">
+
     <button class="waves-effect waves-light btn" id="effect1">
         Area
     </button>
@@ -89,9 +68,14 @@
     <button class="waves-effect waves-light btn" id="effect3">
         data points
     </button>
+    <button class="waves-effect waves-light btn" id="size1">
+        1300x900
+    </button>
+    <button class="waves-effect waves-light btn" id="size2">
+        1600x1000
+    </button>
 </div>
 <div id="container">
-
     <div class="center-align">
         <div id="root">
         </div>

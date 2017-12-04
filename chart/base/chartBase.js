@@ -109,6 +109,7 @@ export class ChartBase {
 	}
 
 	drawXAxis() {
+		console.log(this.height);
 		this.axisBottom = d3
 			.axisBottom(this.scaleX)
 			.tickFormat(this.timeFormat);
@@ -163,6 +164,7 @@ export class ChartBase {
 		this.container.selectAll('.x-axis')
 			.transition()
 			.duration(this.transitionDuration)
+			.attr('transform', `translate(0,${this.height})`)
 			.call(this.axisBottom);
 
 		return await waitfor(this.transitionDuration);
