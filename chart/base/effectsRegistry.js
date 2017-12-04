@@ -1,7 +1,5 @@
 export class EffectsRegistry {
-	/**
-	 *
-	 */
+
 	constructor(chart) {
 		/**
 		 * @param {Object} chart

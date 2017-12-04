@@ -30,22 +30,31 @@ export class MouseTrackingEffect {
 					.transition()
 					.duration(50)
 					.attr('opacity', 1)
-					.attr('x', x - 8)
+					.attr('x', x - 28)
 					.attr('y', chart.height);
+
 				d3.select('.mouse-tracking-label-x')
 					.transition()
 					.duration(50)
 					.text(chart.timeFormat(data.x))
 					.attr('fill', 'white')
-					.attr('x', x)
+					.attr('x', x - 25)
 					.attr('y', chart.height + 15);
+
+				d3.select('.mouse-tracking-rect-y')
+					.transition()
+					.duration(50)
+					.attr('opacity', 1)
+					.attr('x', chart.margin - 20)
+					.attr('y', y - 20);
 
 				d3.select('.mouse-tracking-label-y')
 					.transition()
 					.duration(50)
-					.attr('x', 0)
+					.attr('x', chart.margin - 18)
 					.attr('y', y)
-					.text(data.y);
+					.text(data.y)
+					.attr('fill', 'white');
 
 				d3.select('.x-track')
 					.transition()
@@ -82,7 +91,7 @@ export class MouseTrackingEffect {
 		chart.container
 			.append('rect')
 			.attr('height', 20)
-			.attr('width', 50)
+			.attr('width', 60)
 			.attr('fill', 'black')
 			.attr('opacity', 0)
 			.classed('mouse-tracking-rect-x', true);
@@ -91,11 +100,20 @@ export class MouseTrackingEffect {
 			.append('text')
 			.attr('font-size', '10pt')
 			.classed('mouse-tracking-label-x', true);
+		chart.container
+			.append('rect')
+			.attr('height', 35)
+			.attr('width', 20)
+			.attr('fill', 'black')
+			.attr('opacity', 0)
+			.classed('mouse-tracking-rect-y', true);
 
 		chart.container
 			.append('text')
 			.classed('mouse-tracking-label-y', true)
 			.attr('font-size', '10pt');
+
+
 	}
 
 	removeEffect() {
