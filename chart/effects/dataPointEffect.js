@@ -24,10 +24,20 @@ export class DataPointEffect {
 			.attr('r', this.r)
 			.attr('cx', (d) => chart.scaleX(d.x))
 			.attr('cy', (d) => chart.scaleY(d.y))
-			.attr('fill', this.fillColor);
+			.attr('fill', this.fillColor)
+			.attr('opacity', 0);
+		d3.selectAll('.data-point-circle')
+			.transition()
+			.duration(450)
+			.attr('opacity', 1);
+
 	}
 
 	removeEffect() {
-		d3.selectAll('.data-point-circle').remove();
+		d3.selectAll('.data-point-circle')
+			.transition()
+			.duration(350)
+			.attr('opacity',0)
+			.remove();
 	}
 }

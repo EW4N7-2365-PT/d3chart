@@ -19,12 +19,20 @@ export class AreaEffect {
 		d3.select('.layer-1')
 			.append('path')
 			.attr('fill', this.fillColor)
-			.attr('opacity', this.opacity)
+			.attr('opacity', 0)
 			.classed('area-effect-area', true)
 			.attr('d', area(chart.data));
+		d3.selectAll('.area-effect-area')
+			.transition()
+			.duration(250)
+			.attr('opacity', this.opacity);
 	}
 
 	removeEffect() {
-		d3.selectAll('.area-effect-area').remove();
+		d3.selectAll('.area-effect-area')
+			.transition()
+			.duration(250)
+			.attr('opacity', 0)
+			.remove();
 	}
 }

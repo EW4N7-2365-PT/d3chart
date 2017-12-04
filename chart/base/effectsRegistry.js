@@ -10,7 +10,7 @@ export class EffectsRegistry {
 
 	_getEffect(name) {
 		if (!(this.effects.has(name))) {
-			throw new Error('Effect does not exist');
+			throw new Error(`Effect ${name} does not exist`);
 		}
 		return this.effects.get(name);
 	}
