@@ -65,7 +65,7 @@ export class EffectsRegistry {
 	}
 
 	applyOnResize() {
-		for(const effect of this.list(true)) {
+		for (const effect of this.list(true)) {
 			this.show(effect.name);
 		}
 	}

@@ -4,11 +4,13 @@ export class AreaEffect {
 	/**
 	 *
 	 * @param {string} [fillColor=blue] - color of the area
-	 * @param {number} opacity
+	 * @param {number} [opacity=0.5]
+	 * @param {number} [transitionTime=350]
 	 */
-	constructor({fillColor, opacity} = {}) {
+	constructor({fillColor, opacity, transitionTime} = {}) {
 		this.fillColor = fillColor || 'blue';
 		this.opacity = opacity || .5;
+		this.transitionTime = transitionTime || 350;
 	}
 
 	applyEffect(chart) {
@@ -24,15 +26,11 @@ export class AreaEffect {
 			.attr('d', area(chart.data));
 		d3.selectAll('.area-effect-area')
 			.transition()
-			.duration(250)
+			.duration(this.transitionTime)
 			.attr('opacity', this.opacity);
 	}
 
 	removeEffect() {
-		d3.selectAll('.area-effect-area')
-			.transition()
-			.duration(250)
-			.attr('opacity', 0)
-			.remove();
+		d3.selectAll('.area-effect-area').remove();
 	}
 }
