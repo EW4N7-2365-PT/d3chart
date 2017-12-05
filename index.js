@@ -47,7 +47,7 @@ const config_object = {
 	width: 1300,
 	margin: 25,
 	invertYAxis: false,
-	transitionDuration: 1300,
+	transitionDuration: 350,
 	curve: d3.curveLinear,
 	scaleXClass: d3.scaleTime
 };

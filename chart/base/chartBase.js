@@ -150,7 +150,7 @@ export class ChartBase {
 	 */
 	async resize(width, height) {
 
-		this.effects.hideAll();
+		this.effects.hideOnResize();
 		this.resizeContainer(width, height);
 		this.axisLeft.scale(this.scaleY);
 		this.axisBottom.scale(this.scaleX);

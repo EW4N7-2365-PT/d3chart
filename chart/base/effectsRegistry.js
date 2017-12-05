@@ -5,19 +5,19 @@ export class EffectsRegistry {
 		 * @param {Object} chart
 		 */
 		this.chart = chart;
-		this.effects = new Map();
+		this._effects = new Map();
 	}
 
 	_getEffect(name) {
-		if (!(this.effects.has(name))) {
+		if (!(this._effects.has(name))) {
 			throw new Error(`Effect ${name} does not exist`);
 		}
-		return this.effects.get(name);
+		return this._effects.get(name);
 	}
 
 	list(visible = 'all') {
-		const f = visible === 'all' ? () => true : (e) => e.visible === visible;
-		return [...this.effects.values()]
+		const f = visible === 'all' ? () => true : e => e.visible === visible;
+		return [...this._effects.values()]
 			.filter(f)
 			.map(e => e.name);
 	}
@@ -29,7 +29,7 @@ export class EffectsRegistry {
 		if (show) {
 			effect.applyEffect(this.chart);
 		}
-		this.effects.set(name, {name: name, effectObject: effect, visible: show});
+		this._effects.set(name, {name: name, effectObject: effect, visible: show});
 	}
 
 	show(name) {
@@ -38,10 +38,10 @@ export class EffectsRegistry {
 		effect.visible = true;
 	}
 
-	hide(name) {
+	hide(name, resize = false) {
 		const effect = this._getEffect(name);
 		effect.effectObject.removeEffect();
-		effect.visible = false;
+		effect.visible = resize;
 	}
 
 	toggle(name) {
@@ -64,9 +64,15 @@ export class EffectsRegistry {
 		}
 	}
 
+	hideOnResize() {
+		for (const effectName of this.list(true)) {
+			this.hide(effectName, true);
+		}
+	}
+
 	applyOnResize() {
 		for (const effect of this.list(true)) {
-			this.show(effect.name);
+			this.show(effect);
 		}
 	}
 
