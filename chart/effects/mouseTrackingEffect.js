@@ -16,7 +16,7 @@ export class MouseTrackingEffect {
 			.on('mousemove', function () {
 				const indexX = scaleX.invert(d3.mouse(this)[0]);
 
-				const object_bisector = d3.bisector((data) => data.x).left;
+				const object_bisector = d3.bisector(data => data.x).left;
 				const bisect = object_bisector(chart._data, indexX);
 				const data_closer = chart._data[bisect - 1];
 				const data_far = chart._data[bisect];
@@ -31,15 +31,16 @@ export class MouseTrackingEffect {
 					.transition()
 					.duration(60)
 					.attr('opacity', 1)
-					.attr('x', x - 28)
+					.attr('x', x - (d3.select('.mouse-tracking-label-x').node().getBBox().width + 5) / 2)
+					.attr('width', d3.select('.mouse-tracking-label-x').node().getBBox().width + 5)
 					.attr('y', chart.height);
 
 				d3.select('.mouse-tracking-label-x')
 					.transition()
 					.duration(60)
-					.text(chart.timeFormat(data.x))
+					.text(chart.displayTimeFormat(data.x))
 					.attr('fill', 'white')
-					.attr('x', x - 25)
+					.attr('x', x - (d3.select('.mouse-tracking-label-x').node().getBBox().width + 5) / 2)
 					.attr('y', chart.height + 15);
 
 				d3.select('.mouse-tracking-rect-y')
@@ -88,12 +89,10 @@ export class MouseTrackingEffect {
 			.attr('stroke', 'grey')
 			.attr('stroke-width', 3)
 			.attr('opacity', 0.5);
-
 		chart.container
 			.append('rect')
-			.attr('height', 20)
-			.attr('width', 60)
-			.attr('fill', 'black')
+			.attr('height', 22)
+			.attr('fill', '#353638')
 			.attr('opacity', 0)
 			.classed('mouse-tracking-rect-x', true);
 
@@ -101,11 +100,12 @@ export class MouseTrackingEffect {
 			.append('text')
 			.attr('font-size', '10pt')
 			.classed('mouse-tracking-label-x', true);
+
 		chart.container
 			.append('rect')
 			.attr('height', 35)
 			.attr('width', 20)
-			.attr('fill', 'black')
+			.attr('fill', '#353638')
 			.attr('opacity', 0)
 			.classed('mouse-tracking-rect-y', true);
 

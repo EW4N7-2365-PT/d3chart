@@ -26,7 +26,7 @@ export class ChartBase {
 		this.container = null;
 		this.axisBottom = null;
 		this.axisLeft = null;
-		this.timeFormat = timeFormat || d3.timeFormat('%H:%M:%S');
+		this.displayTimeFormat = timeFormat || d3.timeFormat('%Y %B');
 		this.invertYAxis = invertYAxis || false;
 		this.transitionDuration = transitionDuration || 0;
 		this.effects = new EffectsRegistry(this);
@@ -108,10 +108,10 @@ export class ChartBase {
 		return this;
 	}
 
-	drawXAxis() {
+	_drawXAxis() {
 		this.axisBottom = d3
 			.axisBottom(this.scaleX)
-			.tickFormat(this.timeFormat);
+			.tickFormat(this.displayTimeFormat);
 		d3.select('.layer-2')
 			.append('g')
 			.classed('axis x-axis', true)
@@ -119,7 +119,7 @@ export class ChartBase {
 			.call(this.axisBottom);
 	}
 
-	drawYAxis() {
+	_drawYAxis() {
 		this.axisLeft = d3.axisLeft(this.scaleY);
 		d3.select('.layer-2')
 			.append('g')
@@ -133,7 +133,7 @@ export class ChartBase {
 	 * @param {number} width - new container width
 	 * @param {number} height - new container height
 	 */
-	resizeContainer(width, height) {
+	_resizeContainer(width, height) {
 		this.width = width;
 		this.height = height;
 		this.container
@@ -151,7 +151,7 @@ export class ChartBase {
 	async resize(width, height) {
 
 		this.effects.hideOnResize();
-		this.resizeContainer(width, height);
+		this._resizeContainer(width, height);
 		this.axisLeft.scale(this.scaleY);
 		this.axisBottom.scale(this.scaleX);
 
@@ -174,8 +174,8 @@ export class ChartBase {
 	 * @returns {ChartBase}
 	 */
 	drawChart() {
-		this.drawXAxis();
-		this.drawYAxis();
+		this._drawXAxis();
+		this._drawYAxis();
 		return this;
 	}
 }

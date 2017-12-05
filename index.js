@@ -5,6 +5,13 @@ import {DataPointEffect} from './chart/index';
 import {MouseTrackingEffect} from './chart/index';
 import {AreaEffect} from './chart/index';
 
+const dates = d3.timeWeek.every(1).range(new Date(2017, 1, 1), new Date(2017, 12, 12));
+const a = dates.map(e => {
+	return {
+		x: e,
+		y: (Math.floor(Math.random() * 50 - 20)) + 20
+	};
+});
 
 const data = [
 	{x: '10:6:24', y: 2},
@@ -54,7 +61,7 @@ const config_object = {
 
 const chart = new ChartGridlines('#root', config_object)
 	.initChart()
-	.provideData(data)
+	.provideData(d)
 	.drawChart();
 
 chart.effects.add('area', new AreaEffect({fillColor: 'orange', opacity: .2}));
