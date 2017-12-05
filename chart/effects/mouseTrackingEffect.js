@@ -31,8 +31,8 @@ export class MouseTrackingEffect {
 					.transition()
 					.duration(60)
 					.attr('opacity', 1)
-					.attr('x', x - (d3.select('.mouse-tracking-label-x').node().getBBox().width + 5) / 2)
-					.attr('width', d3.select('.mouse-tracking-label-x').node().getBBox().width + 5)
+					.attr('x', x - (d3.select('.mouse-tracking-label-x').node().getBBox().width + 7) / 2)
+					.attr('width', d3.select('.mouse-tracking-label-x').node().getBBox().width + 7)
 					.attr('y', chart.height);
 
 				d3.select('.mouse-tracking-label-x')
@@ -40,7 +40,7 @@ export class MouseTrackingEffect {
 					.duration(60)
 					.text(chart.displayTimeFormat(data.x))
 					.attr('fill', 'white')
-					.attr('x', x - (d3.select('.mouse-tracking-label-x').node().getBBox().width + 5) / 2)
+					.attr('x', x - (d3.select('.mouse-tracking-label-x').node().getBBox().width) / 2)
 					.attr('y', chart.height + 15);
 
 				d3.select('.mouse-tracking-rect-y')

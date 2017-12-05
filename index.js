@@ -4,6 +4,7 @@ import {ChartGridlines} from './chart/index';
 import {DataPointEffect} from './chart/index';
 import {MouseTrackingEffect} from './chart/index';
 import {AreaEffect} from './chart/index';
+import {SymbolEffect} from './chart/index';
 
 const dates = d3.timeWeek.every(1).range(new Date(2017, 1, 1), new Date(2017, 12, 12));
 const a = dates.map(e => {
@@ -61,12 +62,13 @@ const config_object = {
 
 const chart = new ChartGridlines('#root', config_object)
 	.initChart()
-	.provideData(d)
+	.provideData(data)
 	.drawChart();
 
 chart.effects.add('area', new AreaEffect({fillColor: 'orange', opacity: .2}));
 chart.effects.add('datapoints', new DataPointEffect({r: 8, fillColor: 'grey'}));
 chart.effects.add('mousetracking', new MouseTrackingEffect());
+chart.effects.add('symbol', new SymbolEffect(), true);
 
 
 const effect1 = document.getElementById('effect1');
@@ -82,4 +84,4 @@ effect2.addEventListener('click', () => chart.effects.toggle('mousetracking'));
 effect3.addEventListener('click', () => chart.effects.toggle('datapoints'));
 size1.addEventListener('click', () => chart.resize(1300, 900));
 size2.addEventListener('click', () => chart.resize(1600, 800));
-size3.addEventListener('click', () => chart.resize(700, 500));
+size3.addEventListener('click', () => chart.resize(700, 800));

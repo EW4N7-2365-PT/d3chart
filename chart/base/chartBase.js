@@ -26,7 +26,7 @@ export class ChartBase {
 		this.container = null;
 		this.axisBottom = null;
 		this.axisLeft = null;
-		this.displayTimeFormat = timeFormat || d3.timeFormat('%Y %B');
+		this.displayTimeFormat = timeFormat || d3.timeFormat('%H:%M:%S');
 		this.invertYAxis = invertYAxis || false;
 		this.transitionDuration = transitionDuration || 0;
 		this.effects = new EffectsRegistry(this);
@@ -109,6 +109,7 @@ export class ChartBase {
 	}
 
 	_drawXAxis() {
+		d3.selectAll('.x-axis').remove();
 		this.axisBottom = d3
 			.axisBottom(this.scaleX)
 			.tickFormat(this.displayTimeFormat);
@@ -120,6 +121,7 @@ export class ChartBase {
 	}
 
 	_drawYAxis() {
+		d3.selectAll('.y-axis').remove();
 		this.axisLeft = d3.axisLeft(this.scaleY);
 		d3.select('.layer-2')
 			.append('g')
