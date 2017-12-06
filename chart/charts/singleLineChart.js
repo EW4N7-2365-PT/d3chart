@@ -1,5 +1,5 @@
-import {ChartBase} from '../base/chartBase';
 import * as d3 from 'd3';
+import {ChartBase} from '../base/chartBase';
 
 /**
  * Draw basic line

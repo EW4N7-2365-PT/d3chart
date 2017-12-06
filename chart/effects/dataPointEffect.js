@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
+import {EffectBase} from './effectBase';
 
-export class DataPointEffect {
+export class DataPointEffect extends EffectBase {
 	/**
 	 *
 	 * @param {number}  [r=5]
@@ -8,6 +9,7 @@ export class DataPointEffect {
 	 * @param {number} [transitionTime=450]
 	 */
 	constructor({r, fillColor, transitionTime} = {}) {
+		super();
 		this.r = r || 5;
 		this.fillColor = fillColor || 'blue';
 		this.transitionTime = transitionTime || 450;

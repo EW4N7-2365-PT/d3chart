@@ -106,6 +106,7 @@ export class ChartBase {
 		this.container.append('g').classed('layer-0', true);
 		this.container.append('g').classed('layer-1', true);
 		this.container.append('g').classed('layer-2', true);
+		this.container.append('g').classed('layer-3', true);
 		return this;
 	}
 

@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
-
-export class MouseTrackingEffect {
+import {EffectBase} from './effectBase';
+export class MouseTrackingEffect extends EffectBase {
 
 	applyEffect(chart) {
 
@@ -124,5 +124,9 @@ export class MouseTrackingEffect {
 		d3.selectAll('.mouse-tracking-label-x').remove();
 		d3.selectAll('.mouse-tracking-rect-x').remove();
 		d3.selectAll('.mouse-tracking-rect-y').remove();
+	}
+
+	serialize() {
+		return {};
 	}
 }

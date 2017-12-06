@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
-
-export class SymbolEffect {
+import {EffectBase} from './effectBase';
+export class SymbolEffect extends EffectBase{
 	applyEffect(chart) {
 		d3.selectAll('.layer-1')
 			.append('text')
@@ -16,5 +16,9 @@ export class SymbolEffect {
 
 	removeEffect() {
 		d3.selectAll('.symbol-effect').remove();
+	}
+
+	serialize() {
+		return {};
 	}
 }

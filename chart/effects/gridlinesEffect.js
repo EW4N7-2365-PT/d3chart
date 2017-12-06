@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
+import {EffectBase} from './effectBase';
 
-export class GridlinesEffecct {
+export class GridlinesEffecct extends EffectBase {
 
 	applyEffect(chart) {
 

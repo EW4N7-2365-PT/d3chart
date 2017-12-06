@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
+import {EffectBase} from './effectBase';
 
-export class AreaEffect {
+export class AreaEffect extends EffectBase {
 	/**
 	 *
 	 * @param {string} [fillColor=blue] - color of the area
@@ -8,6 +9,7 @@ export class AreaEffect {
 	 * @param {number} [transitionTime=350]
 	 */
 	constructor({fillColor, opacity, transitionTime} = {}) {
+		super();
 		this.fillColor = fillColor || 'blue';
 		this.opacity = opacity || .5;
 		this.transitionTime = transitionTime || 350;
@@ -32,5 +34,13 @@ export class AreaEffect {
 
 	removeEffect() {
 		d3.selectAll('.area-effect-area').remove();
+	}
+
+	serialize() {
+		return {
+			fillColor: this.fillColor,
+			r: this.r,
+			transitionTime: this.transitionTime
+		};
 	}
 }

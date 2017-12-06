@@ -23,9 +23,6 @@ export class EffectsRegistry {
 	}
 
 	add(name, effect, show = false) {
-		if (effect.applyEffect === undefined || effect.removeEffect === undefined) {
-			throw new Error('imp');
-		}
 		if (show) {
 			effect.applyEffect(this.chart);
 		}
@@ -52,18 +49,6 @@ export class EffectsRegistry {
 		}
 	}
 
-	showAll() {
-		for (const effectName of this.list()) {
-			this.show(effectName);
-		}
-	}
-
-	hideAll() {
-		for (const effectName of this.list()) {
-			this.hide(effectName);
-		}
-	}
-
 	hideOnResize() {
 		for (const effectName of this.list(true)) {
 			this.hide(effectName, true);
@@ -75,5 +60,4 @@ export class EffectsRegistry {
 			this.show(effect);
 		}
 	}
-
 }
