@@ -1,10 +1,6 @@
 import 'babel-polyfill';
 import * as d3 from 'd3';
 import {ChartGridlines} from './chart/index';
-import {DataPointEffect} from './chart/index';
-import {MouseTrackingEffect} from './chart/index';
-import {AreaEffect} from './chart/index';
-import {SymbolEffect} from './chart/index';
 
 const data = [
 	{x: '10:6:24', y: 2},
@@ -63,11 +59,6 @@ const chart = new ChartGridlines('#root', config_object)
 	.provideData(data)
 	.drawChart();
 
-chart.effects.add('area', new AreaEffect({fillColor: 'orange', opacity: .2}));
-chart.effects.add('datapoints', new DataPointEffect({r: 8, fillColor: 'grey'}));
-chart.effects.add('mousetracking', new MouseTrackingEffect());
-chart.effects.add('symbol', new SymbolEffect(), true);
-
 
 const effect1 = document.getElementById('effect1');
 const effect2 = document.getElementById('effect2');
@@ -83,3 +74,13 @@ effect3.addEventListener('click', () => chart.effects.toggle('datapoints'));
 size1.addEventListener('click', () => chart.resize(1300, 900));
 size2.addEventListener('click', () => chart.resize(1600, 800));
 size3.addEventListener('click', () => chart.resize(1850, 950));
+
+chart.effects.addAll({
+	'area': {fillColor: 'orange', opacity: .2},
+	'datapoints': {r: 8, fillColor: 'grey'},
+	'mousetracking': {},
+	'symbol': {}
+});
+chart.effects.apply('area');
+chart.effects.apply('datapoints');
+chart.effects.apply('mousetracking');

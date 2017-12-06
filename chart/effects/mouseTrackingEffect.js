@@ -10,6 +10,7 @@ export class MouseTrackingEffect extends EffectBase {
 		chart.container.append('rect')
 			.attr('height', chart.height)
 			.attr('width', chart.width)
+			.classed('intercept', true)
 			.attr('fill', 'none')
 			.attr('stroke', 'none')
 			.attr('pointer-events', 'all')
@@ -118,6 +119,7 @@ export class MouseTrackingEffect extends EffectBase {
 	}
 
 	removeEffect() {
+		d3.selectAll('.intercept').remove();
 		d3.selectAll('.y-track').remove();
 		d3.selectAll('.x-track').remove();
 		d3.selectAll('.mouse-tracking-label-y').remove();

@@ -1,3 +1,5 @@
+import {effectsMap} from '../effects/effectsMap';
+
 export class EffectsRegistry {
 
 	constructor(chart) {
@@ -9,55 +11,64 @@ export class EffectsRegistry {
 	}
 
 	_getEffect(name) {
-		if (!(this._effects.has(name))) {
+		if (!(effectsMap.has(name))) {
 			throw new Error(`Effect ${name} does not exist`);
 		}
-		return this._effects.get(name);
+		return effectsMap.get(name);
 	}
 
-	list(visible = 'all') {
+	_list(visible = 'all') {
 		const f = visible === 'all' ? () => true : e => e.visible === visible;
 		return [...this._effects.values()]
 			.filter(f)
 			.map(e => e.name);
 	}
 
-	add(name, effect, show = false) {
-		if (show) {
-			effect.applyEffect(this.chart);
-		}
-		this._effects.set(name, {name: name, effectObject: effect, visible: show});
+	add(name, config = {}) {
+		const effect = this._getEffect(name);
+		this._effects.set(name, {
+			name: name,
+			effectObject: new effect(config),
+			visible: true
+		});
 	}
 
-	show(name) {
-		const effect = this._getEffect(name);
+	addAll(config = {}) {
+		for (const effectName of effectsMap.keys()) {
+			const effectConfig = config[effectName] || {};
+			this.add(effectName, effectConfig);
+		}
+	}
+
+	apply(name) {
+		const effect = this._effects.get(name);
 		effect.effectObject.applyEffect(this.chart);
 		effect.visible = true;
 	}
 
-	hide(name, resize = false) {
-		const effect = this._getEffect(name);
+	remove(name, resize = false) {
+		const effect = this._effects.get(name);
 		effect.effectObject.removeEffect();
 		effect.visible = resize;
 	}
 
 	toggle(name) {
-		if (this.list(true).includes(name)) {
-			this.hide(name);
+		if (this._list(true).includes(name)) {
+			this.remove(name);
 		} else {
-			this.show(name);
+			this.apply(name);
 		}
 	}
 
 	hideOnResize() {
-		for (const effectName of this.list(true)) {
-			this.hide(effectName, true);
+		for (const effectName of this._list(true)) {
+			this.remove(effectName, true);
 		}
 	}
 
 	applyOnResize() {
-		for (const effect of this.list(true)) {
-			this.show(effect);
+		for (const effect of this._list(true)) {
+			this.apply(effect);
 		}
 	}
 }
