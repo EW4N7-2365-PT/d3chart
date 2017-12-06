@@ -38,4 +38,12 @@ export class DataPointEffect {
 	removeEffect() {
 		d3.selectAll('.data-point-circle').remove();
 	}
+
+	serialize() {
+		return {
+			r: this.r,
+			fillColor: this.fillColor,
+			transitionTime: this.transitionTime
+		};
+	}
 }

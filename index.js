@@ -6,14 +6,6 @@ import {MouseTrackingEffect} from './chart/index';
 import {AreaEffect} from './chart/index';
 import {SymbolEffect} from './chart/index';
 
-const dates = d3.timeWeek.every(1).range(new Date(2017, 1, 1), new Date(2017, 12, 12));
-const a = dates.map(e => {
-	return {
-		x: e,
-		y: (Math.floor(Math.random() * 50 - 20)) + 20
-	};
-});
-
 const data = [
 	{x: '10:6:24', y: 2},
 	{x: '10:7:25', y: 18},
@@ -43,7 +35,12 @@ const data = [
 	{x: '10:33:29', y: 19},
 	{x: '10:34:29', y: 12},
 	{x: '10:35:29', y: 10},
-	{x: '10:36:29', y: 15},
+	{x: '10:36:00', y: 15},
+	{x: '10:37:00', y: 12},
+	{x: '10:38:00', y: 11},
+	{x: '10:39:00', y: 10},
+	{x: '10:40:00', y: 12},
+	{x: '10:41:00', y: 15},
 ];
 
 const parse = d3.timeParse('%H:%M:%S');
@@ -57,7 +54,8 @@ const config_object = {
 	invertYAxis: false,
 	transitionDuration: 350,
 	curve: d3.curveLinear,
-	scaleXClass: d3.scaleTime
+	scaleXClass: d3.scaleTime,
+	displayTimeFormat: '%H:%M:%S'
 };
 
 const chart = new ChartGridlines('#root', config_object)
@@ -84,4 +82,4 @@ effect2.addEventListener('click', () => chart.effects.toggle('mousetracking'));
 effect3.addEventListener('click', () => chart.effects.toggle('datapoints'));
 size1.addEventListener('click', () => chart.resize(1300, 900));
 size2.addEventListener('click', () => chart.resize(1600, 800));
-size3.addEventListener('click', () => chart.resize(700, 800));
+size3.addEventListener('click', () => chart.resize(1850, 950));

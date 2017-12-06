@@ -20,15 +20,21 @@ export class SingleLineChart extends ChartBase {
 		return this;
 	}
 
-	createLine() {
+	_createLine() {
 		return d3.line()
 			.x(d => this.scaleX(d.x))
 			.y(d => this.scaleY(d.y))
 			.curve(this.curve);
 	}
 
+	update(data) {
+		this._data = data;
+		this.drawChart();
+	}
+
 	drawLine() {
-		const line = this.createLine();
+		d3.selectAll('.line').remove();
+		const line = this._createLine();
 		this.container
 			.append('path')
 			.classed('line', true)
