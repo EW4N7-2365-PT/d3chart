@@ -26,7 +26,7 @@ export class GridlinesEffecct {
 	}
 
 	removeEffect() {
-		// d3.selectAll('.').remove();
+		d3.selectAll('.grid').remove();
 	}
 
 }
