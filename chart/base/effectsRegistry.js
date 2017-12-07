@@ -29,7 +29,7 @@ export class EffectsRegistry {
 		this._effects.set(name, {
 			name: name,
 			effectObject: new effect(config),
-			visible: true
+			visible: false
 		});
 	}
 
@@ -70,5 +70,9 @@ export class EffectsRegistry {
 		for (const effect of this._list(true)) {
 			this.apply(effect);
 		}
+	}
+
+	serializeEffects() {
+		/* TODO: */
 	}
 }

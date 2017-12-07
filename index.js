@@ -59,28 +59,24 @@ const chart = new ChartGridlines('#root', config_object)
 	.provideData(data)
 	.drawChart();
 
+chart.effects.addAll({
+	'area': {fillColor: 'orange', opacity: .2},
+	'datapoints': {r: 8, fillColor: 'grey'},
+	'symbol': {symbol: 'APPL', transitionDuration: 350}
+});
 
 const effect1 = document.getElementById('effect1');
 const effect2 = document.getElementById('effect2');
 const effect3 = document.getElementById('effect3');
+const effect4 = document.getElementById('effect4');
 const size1 = document.getElementById('size1');
 const size2 = document.getElementById('size2');
 const size3 = document.getElementById('size3');
 
-
 effect1.addEventListener('click', () => chart.effects.toggle('area'));
 effect2.addEventListener('click', () => chart.effects.toggle('mousetracking'));
 effect3.addEventListener('click', () => chart.effects.toggle('datapoints'));
+effect4.addEventListener('click', () => chart.effects.toggle('symbol'));
 size1.addEventListener('click', () => chart.resize(1300, 900));
 size2.addEventListener('click', () => chart.resize(1600, 800));
 size3.addEventListener('click', () => chart.resize(1850, 950));
-
-chart.effects.addAll({
-	'area': {fillColor: 'orange', opacity: .2},
-	'datapoints': {r: 8, fillColor: 'grey'},
-	'mousetracking': {},
-	'symbol': {}
-});
-chart.effects.apply('area');
-chart.effects.apply('datapoints');
-chart.effects.apply('mousetracking');

@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
 import {EffectBase} from './effectBase';
+
 export class MouseTrackingEffect extends EffectBase {
 
 	applyEffect(chart) {
@@ -7,7 +8,8 @@ export class MouseTrackingEffect extends EffectBase {
 		this.addElements(chart);
 		const scaleX = chart.scaleX;
 		const scaleY = chart.scaleY;
-		chart.container.append('rect')
+		d3.selectAll('.layer-3')
+			.append('rect')
 			.attr('height', chart.height)
 			.attr('width', chart.width)
 			.classed('intercept', true)
@@ -18,47 +20,17 @@ export class MouseTrackingEffect extends EffectBase {
 				const indexX = scaleX.invert(d3.mouse(this)[0]);
 
 				const object_bisector = d3.bisector(data => data.x).left;
-				const bisect = object_bisector(chart._data, indexX);
-				const data_closer = chart._data[bisect - 1];
-				const data_far = chart._data[bisect];
+				const bisect = object_bisector(chart.data, indexX);
+				const data_closer = chart.data[bisect - 1];
+				const data_far = chart.data[bisect];
 				if (!data_closer || !data_far) {
 					return;
 				}
 				const data = indexX - data_far.x > data_closer.x - indexX ? data_far : data_closer;
 				const x = scaleX(data.x);
 				const y = scaleY(data.y);
-
-				d3.select('.mouse-tracking-rect-x')
-					.transition()
-					.duration(60)
-					.attr('opacity', 1)
-					.attr('x', x - (d3.select('.mouse-tracking-label-x').node().getBBox().width + 7) / 2)
-					.attr('width', d3.select('.mouse-tracking-label-x').node().getBBox().width + 7)
-					.attr('y', chart.height);
-
-				d3.select('.mouse-tracking-label-x')
-					.transition()
-					.duration(60)
-					.text(chart.displayTimeFormat(data.x))
-					.attr('fill', 'white')
-					.attr('x', x - (d3.select('.mouse-tracking-label-x').node().getBBox().width) / 2)
-					.attr('y', chart.height + 15);
-
-				d3.select('.mouse-tracking-rect-y')
-					.transition()
-					.duration(60)
-					.attr('opacity', 1)
-					.attr('x', chart.margin - 20)
-					.attr('y', y - 20);
-
-				d3.select('.mouse-tracking-label-y')
-					.transition()
-					.duration(60)
-					.attr('x', chart.margin - 18)
-					.attr('y', y)
-					.text(data.y)
-					.attr('fill', 'white');
-
+				const x_label_width = d3.select('.mouse-tracking-label-x').node().getBBox().width;
+				const y_label_width = d3.select('.mouse-tracking-label-y').node().getBBox().width;
 				d3.select('.x-track')
 					.transition()
 					.duration(60)
@@ -74,6 +46,38 @@ export class MouseTrackingEffect extends EffectBase {
 					.attr('y1', y)
 					.attr('x2', chart.width)
 					.attr('y2', y);
+
+				d3.select('.mouse-tracking-rect-x')
+					.transition()
+					.duration(60)
+					.attr('opacity', 1)
+					.attr('x', x - (x_label_width / 2))
+					.attr('width', x_label_width + 7)
+					.attr('y', chart.height);
+
+				d3.select('.mouse-tracking-label-x')
+					.transition()
+					.duration(60)
+					.text(chart.displayTimeFormat(data.x))
+					.attr('fill', 'white')
+					.attr('x', x - ((x_label_width - 5) / 2))
+					.attr('y', chart.height + 15);
+
+				d3.select('.mouse-tracking-rect-y')
+					.transition()
+					.duration(60)
+					.attr('opacity', 1)
+					.attr('width', y_label_width + 5)
+					.attr('x', chart.margin - y_label_width - 5)
+					.attr('y', y - (y_label_width));
+
+				d3.select('.mouse-tracking-label-y')
+					.transition()
+					.duration(60)
+					.attr('x', chart.margin - y_label_width - 3)
+					.attr('y', y + (y_label_width / 2))
+					.text(data.y)
+					.attr('fill', 'white');
 			});
 	}
 
@@ -126,9 +130,5 @@ export class MouseTrackingEffect extends EffectBase {
 		d3.selectAll('.mouse-tracking-label-x').remove();
 		d3.selectAll('.mouse-tracking-rect-x').remove();
 		d3.selectAll('.mouse-tracking-rect-y').remove();
-	}
-
-	serialize() {
-		return {};
 	}
 }
