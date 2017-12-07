@@ -41,6 +41,16 @@ export class DataPointEffect extends EffectBase {
 		d3.selectAll('.data-point-circle').remove();
 	}
 
+	update({r, fillColor}) {
+		this.r = r;
+		this.fillColor = fillColor;
+		d3.selectAll('.data-point-circle')
+			.transition()
+			.duration(this.transitionTime)
+			.attr('r', this.r)
+			.attr('fill', this.fillColor);
+	}
+
 	serialize() {
 		return {
 			r: this.r,

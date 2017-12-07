@@ -9,5 +9,11 @@ export class EffectBase {
 		if (this.removeEffect === undefined) {
 			throw new Error('Effect must implement removeEffect method');
 		}
+		if (this.serialize === undefined) {
+			throw new Error('Effect must implement serialize method');
+		}
+		if (this.update === undefined) {
+			throw new Error('Effect must implement update method');
+		}
 	}
 }

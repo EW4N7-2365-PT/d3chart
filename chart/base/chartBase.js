@@ -26,8 +26,7 @@ export class ChartBase {
 		this.container = null;
 		this.axisBottom = null;
 		this.axisLeft = null;
-		this.dataTimeFormat = d3.timeFormat('%H:%M:%S');
-		this.displayTimeFormat = d3.timeFormat(displayTimeFormat) || d3.timeFormat('%H:%M:%S');
+		this.displayTimeFormat = d3.timeFormat(displayTimeFormat);
 		this.invertYAxis = invertYAxis || false;
 		this.transitionDuration = transitionDuration || 0;
 		this.effects = new EffectsRegistry(this);

@@ -36,7 +36,6 @@ const data = [
 	{x: '10:38:00', y: 11},
 	{x: '10:39:00', y: 10},
 	{x: '10:40:00', y: 12},
-	{x: '10:41:00', y: 15},
 ];
 
 const parse = d3.timeParse('%H:%M:%S');
@@ -59,12 +58,17 @@ const chart = new ChartGridlines('#root', config_object)
 	.provideData(data)
 	.drawChart();
 
+
 chart.effects.addAll({
 	'area': {fillColor: 'orange', opacity: .2},
 	'datapoints': {r: 8, fillColor: 'grey'},
-	'symbol': {symbol: 'APPL', transitionDuration: 350}
+	'symbol': {symbol: 'FB', transitionDuration: 350}
 });
-
+setInterval(() => {
+	chart.effects.update('datapoints', {r: Math.floor(Math.random() * 6) + 3, fillColor: 'black'});
+	chart.effects.update('area', {fillColor: 'orange', opacity: Math.random()});
+	console.log(chart.effects.serializeEffects());
+}, 5000);
 const effect1 = document.getElementById('effect1');
 const effect2 = document.getElementById('effect2');
 const effect3 = document.getElementById('effect3');

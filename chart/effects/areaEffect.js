@@ -36,11 +36,21 @@ export class AreaEffect extends EffectBase {
 		d3.selectAll('.area-effect-area').remove();
 	}
 
+	update({fillColor, opacity}) {
+		this.fillColor = fillColor;
+		this.opacity = opacity;
+		d3.selectAll('.area-effect-area')
+			.transition()
+			.duration(1500)
+			.attr('fill', fillColor)
+			.attr('opacity', opacity);
+	}
+
 	serialize() {
 		return {
 			fillColor: this.fillColor,
 			r: this.r,
-			transitionTime: this.transitionTime
+			opacity: this.opacity,
 		};
 	}
 }

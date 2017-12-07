@@ -72,7 +72,19 @@ export class EffectsRegistry {
 		}
 	}
 
+	update(name, updateConfig) {
+		const effect = this._effects.get(name);
+		effect.effectObject.update(updateConfig);
+		if (!effect.visible) {
+			this.apply(name);
+		}
+	}
+
 	serializeEffects() {
-		/* TODO: */
+		const serializedEffects = {};
+		for (const effect of this._effects.values()) {
+			serializedEffects[effect.name] = effect.effectObject.serialize();
+		}
+		return JSON.stringify(serializedEffects);
 	}
 }

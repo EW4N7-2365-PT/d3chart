@@ -28,7 +28,14 @@ export class SymbolEffect extends EffectBase {
 		d3.selectAll('.symbol-effect').remove();
 	}
 
+	update() {
+
+	}
+
 	serialize() {
-		return {};
+		return {
+			symbol: this.symbol,
+			transitionTime: this.transtionTime
+		};
 	}
 }

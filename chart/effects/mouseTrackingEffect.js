@@ -69,7 +69,7 @@ export class MouseTrackingEffect extends EffectBase {
 					.attr('opacity', 1)
 					.attr('width', y_label_width + 5)
 					.attr('x', chart.margin - y_label_width - 5)
-					.attr('y', y - (y_label_width));
+					.attr('y', y - 35 / 2);
 
 				d3.select('.mouse-tracking-label-y')
 					.transition()
@@ -130,5 +130,13 @@ export class MouseTrackingEffect extends EffectBase {
 		d3.selectAll('.mouse-tracking-label-x').remove();
 		d3.selectAll('.mouse-tracking-rect-x').remove();
 		d3.selectAll('.mouse-tracking-rect-y').remove();
+	}
+
+	update() {
+
+	}
+
+	serialize() {
+		return {};
 	}
 }
