@@ -1,4 +1,4 @@
-##  Set of easy to use charts for financial data
+##  charts for finviz project
 <p align="center">
 <a href="https://travis-ci.org/EW4N7-2365-PT/d3chart/builds"><img src="https://travis-ci.org/EW4N7-2365-PT/d3chart.svg?branch=master" /></a>
 <a href="https://david-dm.org/EW4N7-2365-PT/d3chart"><img src="https://david-dm.org/EW4N7-2365-PT/d3chart.svg" alt="Dependency Status"></a>
@@ -13,7 +13,6 @@ const config = {
     width: /* in px */,
     margin: /* in px */,
     curve: /* eg. curveBasis default: urveCardinal */,
-    invertYAxis: /* default: false */,
     resizeTime: /* resize animation time default: 0 */
 };
 ```
@@ -64,12 +63,6 @@ new ChartClass('mount_element',config)
 ```javascipt
     chartObj.resize(width,height);
 ```
-#### Effects
-Every effect class must implement `applyEffect` which receives chart reference as a first argument
-and `removeEffect`
-
-Effects **can't** mutate chart data.
-
 #### Available effects
 - AreaEffect
 - DataPointEffect
@@ -80,23 +73,3 @@ Effects **can't** mutate chart data.
 ```javascript
     chart.effects.add('mousetracking', new MouseTrackingEffect({/*config */}), true);
 ```
-
-#### Styling
-Every chart exposes css classes for styling
-
-`ChartBase`
-- x-axis
-- y-axis
-
-`SingleLineChart`
-
-same as `ChartBase` +
-- line
-
-`ChartGridlines`
-
-same as `SingleLineChart` +
-
-- grid
-- x-grid
-- y-grid

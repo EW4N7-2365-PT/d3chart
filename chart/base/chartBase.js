@@ -9,12 +9,10 @@ export class ChartBase {
 	 * @param {number} config.width - width of svg container
 	 * @param {number} config.height - height of svg container
 	 * @param {number} config.margin - left and right margin
-	 * @param {boolean} config.invertYAxis - if true Y axis will start with the smallest unit at the top
 	 * @param {number} config.transitionDuration - resize animation time
 	 */
 	constructor(mount, {
 		width, height, margin,
-		invertYAxis,
 		displayTimeFormat,
 		transitionDuration
 	}) {
@@ -27,7 +25,6 @@ export class ChartBase {
 		this.axisBottom = null;
 		this.axisLeft = null;
 		this.displayTimeFormat = d3.timeFormat(displayTimeFormat);
-		this.invertYAxis = invertYAxis || false;
 		this.transitionDuration = transitionDuration || 0;
 		this.effects = new EffectsRegistry(this);
 	}
@@ -81,11 +78,8 @@ export class ChartBase {
 	}
 
 	get scaleY() {
-		let domain = [d3.max(this.data, d => d.y), d3.min(this.data, d => d.y)];
-		domain = this.invertYAxis ? domain.reverse() : domain;
-
 		return d3.scaleLinear()
-			.domain(domain)
+			.domain([d3.max(this.data, d => d.y), d3.min(this.data, d => d.y)])
 			.range([this.margin, this.height]);
 	}
 
