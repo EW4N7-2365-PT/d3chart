@@ -16,14 +16,20 @@ export class GridlinesEffect extends EffectBase {
 		d3.select('.layer-0')
 			.append('g')
 			.classed('grid y-grid', true)
+			.attr('opacity', 0)
 			.attr('transform', `translate(${chart.margin},0)`)
 			.call(gridlinesY);
 
 		d3.select('.layer-0')
 			.append('g')
+			.attr('opacity', 0)
 			.classed('grid y-grid', true)
 			.attr('transform', `translate(0,${chart.height})`)
 			.call(gridlinesX);
+		d3.selectAll('.grid')
+			.transition()
+			.duration(350)
+			.attr('opacity', 1)
 	}
 
 	remove() {

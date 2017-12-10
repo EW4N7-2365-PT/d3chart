@@ -80,7 +80,8 @@ const chart = new SingleLineChart('#root', config_object)
 chart.effects.addFromConfig({
 	'area': {fillColor: 'orange', opacity: .2},
 	'datapoints': {r: 4, fillColor: 'grey'},
-	'gridlines': {}
+	'gridlines': {},
+	'mousetracking': {}
 });
 
 chart.effects.apply('gridlines');
