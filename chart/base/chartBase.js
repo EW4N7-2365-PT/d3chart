@@ -14,7 +14,7 @@ export class ChartBase {
 	constructor(mount, {
 		width, height, margin,
 		displayTimeFormat,
-		transitionDuration
+		transitionDuration,
 	}) {
 		this.mount = mount;
 		this._width = width;

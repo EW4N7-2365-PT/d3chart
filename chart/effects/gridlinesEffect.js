@@ -1,9 +1,9 @@
 import * as d3 from 'd3';
 import {EffectBase} from './effectBase';
 
-export class GridlinesEffecct extends EffectBase {
+export class GridlinesEffect extends EffectBase {
 
-	applyEffect(chart) {
+	apply(chart) {
 
 		const gridlinesY = d3.axisLeft(chart.scaleY)
 			.tickFormat('')
@@ -26,8 +26,16 @@ export class GridlinesEffecct extends EffectBase {
 			.call(gridlinesX);
 	}
 
-	removeEffect() {
+	remove() {
 		d3.selectAll('.grid').remove();
+	}
+
+	update() {
+
+	}
+
+	serialize() {
+		return {};
 	}
 
 }

@@ -1,6 +1,6 @@
 import 'babel-polyfill';
 import * as d3 from 'd3';
-import {ChartGridlines} from './chart/index';
+import {SingleLineChart} from './chart/index';
 
 const data = [
 	{x: '10:6:24', y: 2},
@@ -32,10 +32,28 @@ const data = [
 	{x: '10:34:29', y: 12},
 	{x: '10:35:29', y: 10},
 	{x: '10:36:00', y: 15},
-	{x: '10:37:00', y: 12},
-	{x: '10:38:00', y: 11},
-	{x: '10:39:00', y: 10},
-	{x: '10:40:00', y: 12},
+	{x: '10:37:00', y: 16},
+	{x: '10:38:00', y: 17},
+	{x: '10:39:00', y: 18},
+	{x: '10:40:00', y: 22},
+	{x: '10:41:00', y: 20},
+	{x: '10:42:00', y: 22},
+	{x: '10:43:00', y: 23},
+	{x: '10:44:00', y: 24},
+	{x: '10:45:00', y: 25},
+	{x: '10:46:00', y: 26},
+	{x: '10:47:00', y: 27},
+	{x: '10:48:00', y: 28},
+	{x: '10:49:00', y: 30},
+	{x: '10:50:00', y: 31},
+	{x: '10:51:00', y: 32},
+	{x: '10:52:00', y: 33},
+	{x: '10:53:00', y: 30},
+	{x: '10:54:00', y: 31},
+	{x: '10:55:00', y: 32},
+	{x: '10:56:00', y: 33},
+	{x: '10:57:00', y: 33},
+	{x: '10:58:00', y: 34},
 ];
 
 const parse = d3.timeParse('%H:%M:%S');
@@ -53,26 +71,22 @@ const config_object = {
 	displayTimeFormat: '%H:%M:%S'
 };
 
-const chart = new ChartGridlines('#root', config_object)
+const chart = new SingleLineChart('#root', config_object)
 	.initChart()
 	.provideData(data)
 	.drawChart();
 
 
-chart.effects.addAll({
+chart.effects.addFromConfig({
 	'area': {fillColor: 'orange', opacity: .2},
-	'datapoints': {r: 8, fillColor: 'grey'},
-	'symbol': {symbol: 'FB', transitionDuration: 350}
+	'datapoints': {r: 4, fillColor: 'grey'},
+	'gridlines': {}
 });
-setInterval(() => {
-	chart.effects.update('datapoints', {r: Math.floor(Math.random() * 6) + 3, fillColor: 'black'});
-	chart.effects.update('area', {fillColor: 'orange', opacity: Math.random()});
-	console.log(chart.effects.serializeEffects());
-}, 5000);
+
+chart.effects.apply('gridlines');
 const effect1 = document.getElementById('effect1');
 const effect2 = document.getElementById('effect2');
 const effect3 = document.getElementById('effect3');
-const effect4 = document.getElementById('effect4');
 const size1 = document.getElementById('size1');
 const size2 = document.getElementById('size2');
 const size3 = document.getElementById('size3');
@@ -80,7 +94,6 @@ const size3 = document.getElementById('size3');
 effect1.addEventListener('click', () => chart.effects.toggle('area'));
 effect2.addEventListener('click', () => chart.effects.toggle('mousetracking'));
 effect3.addEventListener('click', () => chart.effects.toggle('datapoints'));
-effect4.addEventListener('click', () => chart.effects.toggle('symbol'));
 size1.addEventListener('click', () => chart.resize(1300, 900));
 size2.addEventListener('click', () => chart.resize(1600, 800));
 size3.addEventListener('click', () => chart.resize(1850, 950));

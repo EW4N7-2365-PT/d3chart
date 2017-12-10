@@ -28,6 +28,7 @@ export class SingleLineChart extends ChartBase {
 	}
 
 	update(data) {
+		this.effects.hideOnResize();
 		this._data = data;
 		this.drawChart();
 	}
@@ -59,6 +60,7 @@ export class SingleLineChart extends ChartBase {
 		this.container.selectAll('.line').remove();
 		await super.resize(width, height);
 		this.drawLine();
+		this.effects.applyOnResize();
 		return Promise.resolve(true);
 	}
 }

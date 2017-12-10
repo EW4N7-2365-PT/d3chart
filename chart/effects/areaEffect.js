@@ -15,7 +15,7 @@ export class AreaEffect extends EffectBase {
 		this.transitionTime = transitionTime || 350;
 	}
 
-	applyEffect(chart) {
+	apply(chart) {
 		const area = d3.area()
 			.y0(chart.height)
 			.x((d) => chart.scaleX(d.x))
@@ -32,7 +32,7 @@ export class AreaEffect extends EffectBase {
 			.attr('opacity', this.opacity);
 	}
 
-	removeEffect() {
+	remove() {
 		d3.selectAll('.area-effect-area').remove();
 	}
 
@@ -51,6 +51,7 @@ export class AreaEffect extends EffectBase {
 			fillColor: this.fillColor,
 			r: this.r,
 			opacity: this.opacity,
+			transitionTime: this.transitionTime
 		};
 	}
 }
