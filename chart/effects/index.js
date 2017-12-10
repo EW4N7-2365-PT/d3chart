@@ -1,4 +1,4 @@
 export {AreaEffect} from './areaEffect';
 export {DataPointEffect} from './dataPointEffect';
 export {MouseTrackingEffect} from './mouseTrackingEffect';
-export {SymbolEffect} from './symbolEffect';
+export {GridlinesEffect} from './gridlinesEffect';

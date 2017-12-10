@@ -3,7 +3,7 @@ import {EffectBase} from './effectBase';
 
 export class MouseTrackingEffect extends EffectBase {
 
-	applyEffect(chart) {
+	apply(chart) {
 
 		this.addElements(chart);
 		const scaleX = chart.scaleX;
@@ -122,7 +122,7 @@ export class MouseTrackingEffect extends EffectBase {
 
 	}
 
-	removeEffect() {
+	remove() {
 		d3.selectAll('.intercept').remove();
 		d3.selectAll('.y-track').remove();
 		d3.selectAll('.x-track').remove();

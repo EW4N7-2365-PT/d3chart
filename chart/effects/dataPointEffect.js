@@ -19,7 +19,7 @@ export class DataPointEffect extends EffectBase {
 	 *
 	 * @param {ChartBase} chart
 	 */
-	applyEffect(chart) {
+	apply(chart) {
 		chart.container.selectAll('point')
 			.data(chart.data)
 			.enter()
@@ -37,7 +37,7 @@ export class DataPointEffect extends EffectBase {
 
 	}
 
-	removeEffect() {
+	remove() {
 		d3.selectAll('.data-point-circle').remove();
 	}
 

@@ -33,22 +33,21 @@ export class EffectsRegistry {
 		});
 	}
 
-	addAll(config = {}) {
-		for (const effectName of effectsMap.keys()) {
-			const effectConfig = config[effectName] || {};
-			this.add(effectName, effectConfig);
+	addFromConfig(config) {
+		for (const [effectName, configObj] of Object.entries(config)) {
+			this.add(effectName, configObj || {});
 		}
 	}
 
 	apply(name) {
 		const effect = this._effects.get(name);
-		effect.effectObject.applyEffect(this.chart);
+		effect.effectObject.apply(this.chart);
 		effect.visible = true;
 	}
 
 	remove(name, resize = false) {
 		const effect = this._effects.get(name);
-		effect.effectObject.removeEffect();
+		effect.effectObject.remove();
 		effect.visible = resize;
 	}
 

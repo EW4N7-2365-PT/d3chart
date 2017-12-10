@@ -1,9 +1,9 @@
 import * as d3 from 'd3';
 import {EffectBase} from './effectBase';
 
-export class GridlinesEffecct extends EffectBase {
+export class GridlinesEffect extends EffectBase {
 
-	applyEffect(chart) {
+	apply(chart) {
 
 		const gridlinesY = d3.axisLeft(chart.scaleY)
 			.tickFormat('')
@@ -16,18 +16,32 @@ export class GridlinesEffecct extends EffectBase {
 		d3.select('.layer-0')
 			.append('g')
 			.classed('grid y-grid', true)
+			.attr('opacity', 0)
 			.attr('transform', `translate(${chart.margin},0)`)
 			.call(gridlinesY);
 
 		d3.select('.layer-0')
 			.append('g')
+			.attr('opacity', 0)
 			.classed('grid y-grid', true)
 			.attr('transform', `translate(0,${chart.height})`)
 			.call(gridlinesX);
+		d3.selectAll('.grid')
+			.transition()
+			.duration(350)
+			.attr('opacity', 1)
 	}
 
-	removeEffect() {
+	remove() {
 		d3.selectAll('.grid').remove();
+	}
+
+	update() {
+
+	}
+
+	serialize() {
+		return {};
 	}
 
 }

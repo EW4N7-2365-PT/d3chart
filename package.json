@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "docs": "./node_modules/.bin/esdoc -c .esdoc.json",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "run": "./node_modules/.bin/webpack-dev-server"
   },
   "keywords": [],
   "author": "",
